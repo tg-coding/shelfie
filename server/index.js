@@ -10,10 +10,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// endpoints
+app.get('/api/inventory', ctrl.getInventory)
+app.post('/api/product', ctrl.addProduct)
+
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
     console.log('db connected');
-    app.listen(SERVER_PORT, () => 
-        console.log(`Server running on ${SERVER_PORT}`)
-    );
+    app.listen(SERVER_PORT, () => console.log(`Server running on ${SERVER_PORT}`));
 });
