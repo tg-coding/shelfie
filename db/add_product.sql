@@ -1,2 +1,2 @@
-insert into products (name, price, img)
+insert into products (img, name, price)
 values ($1, $2, $3)

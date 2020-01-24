@@ -1,10 +1,21 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Header from './Components/Header/Header';
-import Dashboard from './Components/Dashboard/Dashboard';
-import Form from './Components/Form/Form';
 import './App.css';
-import axios from 'axios'
 import routes from './routes';
+
+
+function App () {
+  return (
+    <div className="App">
+      <Header/>
+      {routes}
+    </div>
+  )
+}
+
+export default App;
+
+
 
 // class App extends Component {
 //   constructor(){
@@ -30,13 +41,3 @@ import routes from './routes';
 //     )
 //   }
 // }
-function App () {
-  return (
-    <div className="App">
-      <Header/>
-      {routes}
-    </div>
-  )
-}
-
-export default App;

@@ -5,26 +5,27 @@ module.exports = {
     },
 
     addProduct: (req, res) => {
+        console.log('req.body', req.body);
         const db = req.app.get('db');
-        const {name, price, img} = req.body;
+        const {img, name, price} = req.body;
 
-        db.add_product([name, price, img]).then(() => res.sendStatus(200));
+        db.add_product([img, name, price]).then(() => res.sendStatus(200));
     },
 
-    
 
-    // updateInventory: (req, res) => {
-    //     const db = req.app.get('db');
-    //     const {id} = req.params;
-    //     const {name, price, img} = req.body;
-    
-    //     db.
+    updateProduct: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+        const {img, name, price} = req.body;
 
-    //     db.delete_inventory
-        
-    // },
+        db.update_product([id, img, name, price]).then(() => res.sendStatus(200));
+    },
+  
 
-    deleteInventory: (req, res) => {
-        
+    deleteProduct: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params
+
+        db.delete_product(id).then(data => res.status(200).send(data))
     }
 }

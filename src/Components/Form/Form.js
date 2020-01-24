@@ -13,6 +13,19 @@ class Form extends Component{
         }
     };
 
+    componentDidMount(){
+        if(this.props.match.params.id){
+            axios.get(`/api/product/${this.props.match.params.id}`)
+            .then(res => this.setState({
+                id: res.data.id,
+                img: res.data.img,
+                name: res.data.name,
+                price: res.data.price,
+                editing: true
+            })).catch(err => console.log(err))
+        }
+    };
+
     handleChange = e => {
         const {name, value} = e.target
         this.setState({
@@ -26,22 +39,40 @@ class Form extends Component{
             name: '',
             price: '',
         });
-    }
+    };
 
-    addProduct = (name, price, img) => {
-        axios.post('/api/product', {name, price, img})
-        .then.setState({
-            id: 0,
-            name: '',
-            price: '',
-            img:'',
-            editing: false
+    addProduct = (img, name, price) => {
+        axios.post('/api/product', {img, name, price})
+        .then(() => {
+            this.setState({
+                id: 0,
+                img: '',
+                name: '',
+                price: '',
+                editing: false
+            })
+            this.props.history.push('/')
         })
-        this.props.history.push('/')
-    }
+    };
+
+
+
+    updateProduct = (img, name, price) => {
+        axios.put('/api/product', {img, name, price})
+        .then(() => {
+            this.setState({
+                id: 0,
+                img: '',
+                name: '',
+                price: '',
+                editing: true
+            })
+            this.props.history.push('/')
+        })
+    };
 
     render(){
-        const {editing, id, name, price, img} = this.state
+        const {editing, id, img, name, price} = this.state
         return(
             <div>
                 <div className='form-input-container'>
@@ -75,11 +106,10 @@ class Form extends Component{
                     <button onClick={() => this.cancel()}>Cancel</button>
                     
                     {editing ? (
-                        <button>Update Product</button>
+                        <button onClick={() => this.updateProduct(id, img, name, price)}>Save Changes</button>
                     ):(
-                        <button onClick={() => this.addProduct(name, price, img)}>Add to Inventory</button>
+                        <button onClick={() => this.addProduct(img, name, price)}>Add to Inventory</button>
                     )}
-
                 </div>
             </div>
         )
