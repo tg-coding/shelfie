@@ -1,16 +1,18 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import logo from './logo.png'
 
 function Header (props){
     return(
         <div>
             <header>
-                <div>
-                    SHELFIE
+                <div className='logo-container'>
+                    <img id='logo' src={logo} alt='logo'/>
+                    <div id='logo-text'>SHELFIE</div>
                 </div>
                 <div className='nav-links'>
-                    <Link to='/'>Dashboard</Link>
-                    <Link to='/add'>Add Inventory</Link>
+                    <Link to='/'><button class='nav-btn'>Dashboard</button></Link>
+                    <Link to='/add'><button class='nav-btn'>Add Inventory</button></Link>
                 </div>
 
             </header>

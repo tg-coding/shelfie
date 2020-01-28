@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import defaultImage from '../../DevMountain.jpg'
 
 class Form extends Component{
     constructor(){
@@ -25,6 +26,7 @@ class Form extends Component{
             })).catch(err => console.log(err))
         }
     };
+    
 
     handleChange = e => {
         const {name, value} = e.target
@@ -32,6 +34,7 @@ class Form extends Component{
             [name]: value
         })
     };
+
 
     cancel = () => {
         this.setState({
@@ -41,6 +44,7 @@ class Form extends Component{
         });
     };
 
+
     addProduct = (img, name, price) => {
         axios.post('/api/product', {img, name, price})
         .then(() => {
@@ -48,7 +52,7 @@ class Form extends Component{
                 id: 0,
                 img: '',
                 name: '',
-                price: '',
+                price: 0,
                 editing: false
             })
             this.props.history.push('/')
@@ -56,42 +60,50 @@ class Form extends Component{
     };
 
 
-
-    updateProduct = (img, name, price) => {
-        axios.put('/api/product', {img, name, price})
+    updateProduct = (id, img, name, price) => {
+        // console.log(this.props)
+        axios.put(`/api/product/${id}`, {img, name, price})
         .then(() => {
             this.setState({
                 id: 0,
                 img: '',
                 name: '',
-                price: '',
-                editing: true
+                price: 0,
+                editing: false
             })
             this.props.history.push('/')
         })
     };
 
+
     render(){
         const {editing, id, img, name, price} = this.state
         return(
-            <div>
+            <div className='form-container'>
+                <div className='preview-container'>
+                    {this.state.img
+                        ? <img id='preview-img'
+                            style={{backgroundImage: `url('${this.state.img}')`}}/>
+                        : <img id='preview-no-img' 
+                            style={{backgroundImage: `url('https://img.icons8.com/material-outlined/50/000000/image.png')`}}/>
+                    }
+                </div>
                 <div className='form-input-container'>
-                    <h1>Image URL:</h1>
+                    <h2>Image URL:</h2>
                     <input
                         name='img'
                         onChange={e => this.handleChange(e)}
                         value={this.state.img}
                         input type='text'
-                        
                     />
-                    <h1>Product Name:</h1>
+                    <h2>Product Name:</h2>
                     <input
                         name='name'
                         onChange={e => this.handleChange(e)}
                         value={this.state.name}
                         input type='text'
                     />
-                    <h1>Price:</h1>
+                    <h2>Price:</h2>
                     <input
                         name='price'
                         onChange={e => this.handleChange(e)}
@@ -103,12 +115,16 @@ class Form extends Component{
                 
                 <div className='form-btn-container'>
                     
-                    <button onClick={() => this.cancel()}>Cancel</button>
+                    <button id='cancel-btn' onClick={() => this.cancel()}>Cancel</button>
+
                     
                     {editing ? (
-                        <button onClick={() => this.updateProduct(id, img, name, price)}>Save Changes</button>
+                        <button id='editing-btn' onClick={() => this.updateProduct(id, img, name, price)}>Save Changes</button>
                     ):(
-                        <button onClick={() => this.addProduct(img, name, price)}>Add to Inventory</button>
+                        this.state.img ? (<button id='editing-btn' onClick={() => this.addProduct(img, name, price)}>Add to Inventory</button>
+                        ) : (
+                            <button id='editing-btn' onClick={() => this.addProduct('https://s3.amazonaws.com/bloc-global-assets/almanac-assets/bootcamps/logos/000/002/656/original/DevMountain.jpg?1467187319', name, price)}>Add to Inventory</button>
+                        )
                     )}
                 </div>
             </div>
@@ -117,3 +133,9 @@ class Form extends Component{
 }
 
 export default Form
+
+
+
+
+
+//https://s3.amazonaws.com/bloc-global-assets/almanac-assets/bootcamps/logos/000/002/656/original/DevMountain.jpg?1467187319

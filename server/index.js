@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 // endpoints
+app.get('/api/product/:id', ctrl.getProduct)
 app.get('/api/inventory', ctrl.getInventory)
 app.post('/api/product', ctrl.addProduct)
 app.delete('/api/product/:id', ctrl.deleteProduct)

@@ -1,7 +1,188 @@
 .App {
   text-align: center;
+  font-family: 'Open Sans', sans-serif;
 }
 
-img{
+header{
+  height: 100px;
+  margin-bottom: 60px;
+  padding: 0 100px;
+  color: white;
+  background-color: #AB2A19;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logo-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+#logo{
+  height: 50px;
+}
+
+#logo-text{
+  font-size: 30px;
+  font-weight: bold;
+  padding-left: 30px;
+}
+
+.nav-links{
+  padding-left: 75px;
+}
+
+.nav-btn{
+  margin-left: 15px;
+  font-size: 18px;
+  background-color: #ED6B5A;
+  font-weight: 600;
+}
+
+button{
+  height: 35px;
+  padding: 0 15px;
+  border-radius: 5px;
+  border: none;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.product-container{
+  height: auto;
+  width: 575px;
+  padding: 15px;
+  margin: 20px auto;
+  background-color: #D34735;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.product-img-bkgd{
   height: 200px;
+  width: 320px;
+  background-color: white;
+}
+
+#product-img{
+  height: 200px;
+  max-width: 320px;
+}
+
+.product-info-container{
+  height: 200px;
+  width: 240px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+}
+
+.product-text{
+  text-align: left;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
+h1{
+  font-size: 24px;
+  margin: 0;
+  font-weight: 400;
+}
+
+h2{
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+
+}
+
+#delete-btn{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #3AD886;
+}
+
+#edit-btn{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #3AD886;
+}
+
+.form-container{
+  margin: 20px auto;
+  padding: 15px;
+  height: 500px;
+  width: 450px;
+  border-radius: 10px;
+  background-color: #3AD886;
+  position: relative;
+}
+
+.preview-container{
+  height: 220px;
+  width: 350px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+#preview-img{
+  height: 220px;
+  width: 350px;
+  border: none;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#preview-no-img{
+  height: 220px;
+  width: 350px;
+  border: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20%;
+}
+
+.form-input-container{
+  width: 420px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+input{
+  width: 420px;
+  margin: 10px 0;
+}
+
+#cancel-btn{
+  position: absolute;
+  bottom: 35px;
+  left: 25px;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #ED6B5A;
+}
+
+#editing-btn{
+  position: absolute;
+  bottom: 35px;
+  right: 25px;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #ED6B5A;
 }

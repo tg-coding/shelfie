@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // import{Link} from 'react-router-dom';
-import Product from './../Product/Product';
+import Product from '../Product/Product';
 import axios from 'axios';
 
 class Dashboard extends Component{

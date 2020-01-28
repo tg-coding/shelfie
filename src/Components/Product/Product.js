@@ -17,11 +17,22 @@ class Product extends Component{
     render(){
         return(
             <div className='product-container'>
-                <img src={`${this.props.productInfo.img}`} alt={`${this.props.productInfo.name}`}/>
-                <h1>{this.props.productInfo.name}</h1>
-                <h2>${this.props.productInfo.price}</h2>
-                <button onClick={() => this.delete(this.props.productInfo.id)}>Delete</button>
-                <button onClick={() => this.edit(this.props.productInfo.id)}>Edit</button>
+
+                <div className='product-img-bkgd'>
+                    <img id='product-img' src={`${this.props.productInfo.img}`} alt={`${this.props.productInfo.name}`}/>
+                </div>
+
+                <div className='product-info-container'>
+                    <div className='product-text'>
+                        <h1>{this.props.productInfo.name}</h1>
+                        <h2>${this.props.productInfo.price}</h2>
+                    </div>
+                    <div className='btn-container'>
+                        <button id='delete-btn' onClick={() => this.delete(this.props.productInfo.id)}>Delete</button>
+                        <button id='edit-btn' onClick={() => this.edit(this.props.productInfo.id)}>Edit</button>
+                    </div>
+                </div>
+
             </div>
         )
     }
